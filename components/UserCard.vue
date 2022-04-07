@@ -1,9 +1,12 @@
 <template>
   <div class="user-card">
     <div class="user-card__photo-wrapper">
-      <div
+      <img
         class="user-card__photo"
-        :style="{ 'background-image': 'url(' + user.avatar + ')' }"
+        :src="user.avatar"
+        :alt="`Picture of ${user.name}`"
+        width="135px"
+        height="135px"
       />
     </div>
     <div class="user-card__right">
@@ -73,9 +76,6 @@ export default Vue.extend({
 .user-card__photo {
   background: #bbbbbb;
   object-fit: cover;
-  width: 135px;
-  height: 135px;
-  background-size: contain;
 }
 .user-card__right {
   flex-grow: 1;
