@@ -21,9 +21,8 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
-        rel: 'preload',
+        rel: 'prefetch',
         href: 'https://robohash.org/',
-        as: 'image',
       },
     ],
   },
