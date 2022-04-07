@@ -4,8 +4,9 @@
       <img
         class="user-card__photo"
         :src="user.avatar"
-        width="135px"
         :alt="`Picture of ${user.name}`"
+        width="135px"
+        height="135px"
       />
     </div>
     <div class="user-card__right">
