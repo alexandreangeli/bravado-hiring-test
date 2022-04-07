@@ -42,7 +42,6 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     '@nuxtjs/google-fonts',
-    'nuxt-delay-hydration',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -58,9 +57,5 @@ export default {
         wght: [100, 400, 500, 700],
       },
     },
-  },
-
-  delayHydration: {
-    mode: 'mount',
   },
 }
