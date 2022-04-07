@@ -42,8 +42,13 @@ export default Vue.extend({
         .toUpperCase()
 
       return currentSearch
-        ? this.allUsers.filter((u) =>
-            u.name.toUpperCase().includes(currentSearch)
+        ? this.allUsers.filter(
+            (u) =>
+              u.name.toUpperCase().includes(currentSearch) ||
+              u.email.toUpperCase().includes(currentSearch) ||
+              u.title.toUpperCase().includes(currentSearch) ||
+              u.city.toUpperCase().includes(currentSearch) ||
+              u.address.toUpperCase().includes(currentSearch)
           )
         : this.allUsers
     },
