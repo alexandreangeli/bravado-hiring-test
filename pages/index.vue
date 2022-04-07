@@ -54,7 +54,7 @@ export default Vue.extend({
     },
   },
 
-  async mounted() {
+  async fetch() {
     const usersResponse = await fetch(GetUsersURL)
     this.allUsers = await usersResponse.json()
   },
