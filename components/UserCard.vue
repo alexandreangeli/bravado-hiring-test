@@ -7,7 +7,7 @@
         :alt="`Picture of ${user.name}`"
         width="135px"
         height="135px"
-      />
+      >
     </div>
     <div class="user-card__right">
       <div class="user-card__info">
