@@ -36,19 +36,18 @@ export default Vue.extend({
   },
 
   computed: {
+    currentSearch: function () {
+      return this.$route.query[QueryParams.QS_SEARCH]?.toString().toUpperCase()
+    },
     filteredBySearchUsers: function (): IUser[] {
-      const currentSearch = this.$route.query[QueryParams.QS_SEARCH]
-        ?.toString()
-        .toUpperCase()
-
-      return currentSearch
+      return this.currentSearch
         ? this.allUsers.filter(
             (u) =>
-              u.name.toUpperCase().includes(currentSearch) ||
-              u.email.toUpperCase().includes(currentSearch) ||
-              u.title.toUpperCase().includes(currentSearch) ||
-              u.city.toUpperCase().includes(currentSearch) ||
-              u.address.toUpperCase().includes(currentSearch)
+              u.name.toUpperCase().includes(this.currentSearch) ||
+              u.email.toUpperCase().includes(this.currentSearch) ||
+              u.title.toUpperCase().includes(this.currentSearch) ||
+              u.city.toUpperCase().includes(this.currentSearch) ||
+              u.address.toUpperCase().includes(this.currentSearch)
           )
         : this.allUsers
     },

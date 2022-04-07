@@ -13,18 +13,18 @@
       <div class="user-card__info">
         <div class="user-card__name-mail-wrapper">
           <div class="user-card__name">
-            {{ user.name }}
+            <div v-html="highlightedName" />
           </div>
           <div class="user-card__email">
-            {{ user.email }}
+            <div v-html="highlightedEmail" />
           </div>
         </div>
 
         <div class="user-card__title">
-          {{ user.title }}
+          <div v-html="highlightedTitle" />
         </div>
         <div class="user-card__address">
-          {{ `${user.address}, ${user.city}` }}
+          <div v-html="highlightedFullAddress" />
         </div>
       </div>
 
@@ -38,6 +38,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import IUser from '~/types/IUser'
+import QueryParams from '~/constants/QueryParams'
 
 export default Vue.extend({
   name: 'UserCard',
@@ -55,6 +56,36 @@ export default Vue.extend({
     return {
       isSuitable: false,
     }
+  },
+
+  computed: {
+    currentSearch(): string {
+      return this.$route.query[QueryParams.QS_SEARCH]?.toString().toUpperCase()
+    },
+    highlightedName(): string {
+      return this.getHightlightedText(this.user.name)
+    },
+    highlightedEmail(): string {
+      return this.getHightlightedText(this.user.email)
+    },
+    highlightedTitle(): string {
+      return this.getHightlightedText(this.user.title)
+    },
+    highlightedFullAddress(): string {
+      return this.getHightlightedText(`${this.user.address}, ${this.user.city}`)
+    },
+  },
+
+  methods: {
+    getHightlightedText(value: string): string {
+      return this.currentSearch
+        ? value.replace(new RegExp(this.currentSearch, 'gi'), (match) => {
+            return (
+              '<span class="user-card__highlighted-text">' + match + '</span>'
+            )
+          })
+        : value
+    },
   },
 })
 </script>
@@ -133,5 +164,9 @@ export default Vue.extend({
   text-transform: uppercase;
   cursor: pointer;
   display: flex;
+}
+
+.user-card__highlighted-text {
+  background: #fff73b;
 }
 </style>
