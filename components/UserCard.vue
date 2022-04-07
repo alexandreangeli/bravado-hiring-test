@@ -115,7 +115,7 @@ export default Vue.extend({
   justify-content: space-between;
 }
 .user-card__info {
-  padding: 10px 10px 10px 28px;
+  padding: 10px 10px 0px 28px;
 }
 .user-card__name-mail-wrapper {
   display: flex;
