@@ -15,7 +15,7 @@ import Vue from 'vue'
 import QueryParams from '~/constants/QueryParams'
 import updateQueryParam from '~/functions/updateQueryParam'
 
-const LIST_SCROLL_INCREMENT = 10
+const LIST_SCROLL_INCREMENT = 5
 
 export default Vue.extend({
   name: 'LazyLoadingList',
