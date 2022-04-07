@@ -18,14 +18,12 @@
       </svg>
     </div>
 
-    <label>
-      <span v-show="false"> Search </span>
-      <input
-        v-model="value"
-        class="search-input__input"
-        id="search-input__input"
-      />
-    </label>
+    <label for="search-input__input" v-show="false"> Search </label>
+    <input
+      v-model="value"
+      class="search-input__input"
+      id="search-input__input"
+    />
   </div>
 </template>
 
