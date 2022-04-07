@@ -19,7 +19,7 @@ import Vue from 'vue'
 import SearchInput from '~/components/SearchInput.vue'
 import UserCard from '~/components/UserCard.vue'
 import QueryParams from '~/constants/QueryParams'
-import GetUsersURL from '~/constants/GetUsersURL'
+import usersJson from '~/static/users.json'
 import IUser from '~/types/IUser'
 
 export default Vue.extend({
@@ -31,7 +31,7 @@ export default Vue.extend({
     allUsers: IUser[]
   } {
     return {
-      allUsers: [],
+      allUsers: usersJson,
     }
   },
 
@@ -52,11 +52,6 @@ export default Vue.extend({
           )
         : this.allUsers
     },
-  },
-
-  async fetch() {
-    const usersResponse = await fetch(GetUsersURL)
-    this.allUsers = await usersResponse.json()
   },
 })
 </script>
