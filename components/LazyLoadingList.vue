@@ -2,7 +2,7 @@
   <div ref="lazy-loading-list" class="lazy-loading-list">
     <slot name="header"></slot>
 
-    <div v-for="(item, i) in filteredItems" :key="i">
+    <div v-for="item in filteredItems" :key="keyGenerator(item)">
       <slot name="item" :item="item"></slot>
     </div>
 
@@ -20,6 +20,10 @@ export default Vue.extend({
   props: {
     items: {
       type: Array,
+      required: true,
+    },
+    keyGenerator: {
+      type: Function,
       required: true,
     },
   },

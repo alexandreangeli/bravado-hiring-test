@@ -1,7 +1,10 @@
 <template>
   <div ref="page__outer" class="page__outer">
     <div class="page__inner">
-      <lazy-loading-list :items="filteredBySearchUsers">
+      <lazy-loading-list
+        :items="filteredBySearchUsers"
+        :keyGenerator="(item) => `${item.name}-${item.email}`"
+      >
         <template v-slot:header>
           <search-input placeholder="Search user"></search-input>
         </template>
