@@ -25,11 +25,6 @@ export default {
         href: 'https://robohash.org/',
         as: 'image',
       },
-      {
-        rel: 'preload',
-        href: 'https://gist.githubusercontent.com/',
-        as: 'fetch',
-      },
     ],
   },
 
