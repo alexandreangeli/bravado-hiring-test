@@ -61,6 +61,6 @@ export default {
   },
 
   delayHydration: {
-    mode: 'init',
+    mode: 'mount',
   },
 }
