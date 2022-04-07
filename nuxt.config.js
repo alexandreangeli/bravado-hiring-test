@@ -51,8 +51,4 @@ export default {
       },
     },
   },
-
-  render: {
-    injectScripts: false,
-  },
 }
