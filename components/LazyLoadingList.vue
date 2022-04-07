@@ -3,6 +3,7 @@
     ref="lazy-loading-list"
     class="lazy-loading-list"
     v-on:scroll="scrollHandler"
+    v-on:touchmove="scrollHandler"
   >
     <slot name="header"></slot>
 
