@@ -78,9 +78,6 @@ export default Vue.extend({
         this.totalItemsToShow = newVal.length
       }
     },
-    totalItemsToShow(newVal) {
-      console.log(newVal)
-    },
   },
 })
 </script>
