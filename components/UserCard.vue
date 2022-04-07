@@ -4,6 +4,7 @@
       <img
         class="user-card__photo"
         :src="user.avatar"
+        width="135px"
         :alt="`Picture of ${user.name}`"
       />
     </div>
@@ -66,8 +67,6 @@ export default Vue.extend({
   display: flex;
 }
 .user-card__photo-wrapper {
-  min-width: 135px;
-  max-width: 135px;
   background: #bbbbbb;
   display: flex;
   justify-content: flex-end;
@@ -76,7 +75,6 @@ export default Vue.extend({
 .user-card__photo {
   background: #bbbbbb;
   object-fit: cover;
-  width: 100%;
 }
 .user-card__right {
   flex-grow: 1;
