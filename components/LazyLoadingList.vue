@@ -1,12 +1,12 @@
 <template>
   <div ref="lazy-loading-list" class="lazy-loading-list">
-    <slot name="header" />
+    <slot name="header"></slot>
 
     <div v-for="(item, i) in filteredItems" :key="i">
-      <slot name="item" :item="item" />
+      <slot name="item" :item="item"></slot>
     </div>
 
-    <div ref="scroll-helper" />
+    <div ref="scroll-helper"></div>
   </div>
 </template>
 

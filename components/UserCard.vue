@@ -13,18 +13,18 @@
       <div class="user-card__info">
         <div class="user-card__name-mail-wrapper">
           <div class="user-card__name">
-            <div v-html="highlightedName" />
+            <div v-html="highlightedName"></div>
           </div>
           <div class="user-card__email">
-            <div v-html="highlightedEmail" />
+            <div v-html="highlightedEmail"></div>
           </div>
         </div>
 
         <div class="user-card__title">
-          <div v-html="highlightedTitle" />
+          <div v-html="highlightedTitle"></div>
         </div>
         <div class="user-card__address">
-          <div v-html="highlightedFullAddress" />
+          <div v-html="highlightedFullAddress"></div>
         </div>
       </div>
 
