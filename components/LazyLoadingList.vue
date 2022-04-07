@@ -40,27 +40,47 @@ export default Vue.extend({
     },
   },
 
-  mounted() {
-    if (this.scrollObserver) {
-      this.scrollObserver.disconnect()
-    } else {
-      this.scrollObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(({ isIntersecting }) => {
-            if (isIntersecting) {
-              this.totalItemsToShow += InfiniteScrollIncrement
-            }
-          })
-        },
-        {
-          root: this.$refs['lazy-loading-list'] as Element,
-        }
-      )
-    }
+  methods: {
+    resetScrollObserver() {
+      if (this.scrollObserver) {
+        this.scrollObserver.disconnect()
+      } else {
+        this.scrollObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(({ isIntersecting }) => {
+              if (isIntersecting && this.items.length > this.totalItemsToShow) {
+                this.totalItemsToShow += InfiniteScrollIncrement
+              }
+            })
+          },
+          {
+            root: this.$refs['lazy-loading-list'] as Element,
+          }
+        )
+      }
 
-    if (this.$refs['scroll-helper']) {
-      this.scrollObserver.observe(this.$refs['scroll-helper'] as Element)
-    }
+      if (this.$refs['scroll-helper']) {
+        this.scrollObserver.observe(this.$refs['scroll-helper'] as Element)
+      }
+    },
+  },
+
+  mounted() {
+    this.resetScrollObserver()
+  },
+
+  watch: {
+    items() {
+      this.resetScrollObserver()
+    },
+    filteredItems(newVal) {
+      if (newVal.length < this.totalItemsToShow || !this.totalItemsToShow) {
+        this.totalItemsToShow = newVal.length
+      }
+    },
+    totalItemsToShow(newVal) {
+      console.log(newVal)
+    },
   },
 })
 </script>
