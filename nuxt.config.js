@@ -21,9 +21,14 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
-        rel: 'preconnect',
+        rel: 'preload',
         href: 'https://robohash.org/',
-        crossorigin: true,
+        as: 'image',
+      },
+      {
+        rel: 'preload',
+        href: 'https://gist.githubusercontent.com/',
+        as: 'fetch',
       },
     ],
   },
