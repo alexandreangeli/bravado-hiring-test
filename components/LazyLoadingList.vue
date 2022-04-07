@@ -68,7 +68,7 @@ export default Vue.extend({
 <style scoped>
 .lazy-loading-list {
   height: 100%;
-  overflow: auto;
+  overflow-y: auto;
   padding: 12px;
   display: flex;
   flex-direction: column;
