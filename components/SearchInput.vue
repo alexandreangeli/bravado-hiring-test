@@ -18,7 +18,13 @@
       </svg>
     </div>
 
-    <label for="search-input__input" v-show="false"> Search </label>
+    <label
+      v-show="!value"
+      for="search-input__input"
+      class="search-input__placeholder"
+    >
+      {{ placeholder }}
+    </label>
     <input
       v-model="value"
       class="search-input__input"
@@ -36,6 +42,13 @@ const SEARCH_DEBOUNCE_TIMER = 600
 
 export default Vue.extend({
   name: 'SearchInput',
+
+  props: {
+    placeholder: {
+      type: String,
+      required: true,
+    },
+  },
 
   data(): {
     value: string
@@ -69,12 +82,19 @@ export default Vue.extend({
   border-radius: 2px;
   padding: 10px 20px;
   margin: 10px 0;
+  position: relative;
+  align-items: center;
 }
 .search-input__icon {
   margin-right: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.search-input__placeholder {
+  position: absolute;
+  left: 60px;
+  color: #777;
 }
 .search-input__input {
   border: 0;

@@ -3,7 +3,7 @@
     <div class="page__inner">
       <lazy-loading-list :items="filteredBySearchUsers">
         <template v-slot:header>
-          <search-input />
+          <search-input placeholder="Search user" />
         </template>
 
         <template v-slot:item="{ item }">
