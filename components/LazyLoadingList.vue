@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import InfiniteScrollIncrement from '~/constants/INFINITE_SCROLL_INCREMENT.js'
+import INFINITE_SCROLL_INCREMENT from '~/constants/INFINITE_SCROLL_INCREMENT.js'
 
 export default Vue.extend({
   name: 'LazyLoadingList',
@@ -37,7 +37,7 @@ export default Vue.extend({
     scrollObserver: null | IntersectionObserver
   } {
     return {
-      totalItemsToShow: InfiniteScrollIncrement,
+      totalItemsToShow: INFINITE_SCROLL_INCREMENT,
       scrollObserver: null,
     }
   },
@@ -57,15 +57,32 @@ export default Vue.extend({
         element.scrollHeight - element.scrollTop === element.clientHeight
 
       if (reachedBottom && this.items.length > this.totalItemsToShow) {
-        this.totalItemsToShow += InfiniteScrollIncrement
+        this.totalItemsToShow += INFINITE_SCROLL_INCREMENT
       }
     },
+
+    checkIfNeedsToAddMoreItems() {
+      const element = this.$refs['lazy-loading-list'] as Element
+      if (
+        element &&
+        element.scrollHeight <= element.clientHeight &&
+        this.totalItemsToShow < this.items.length
+      ) {
+        setTimeout(() => (this.totalItemsToShow += INFINITE_SCROLL_INCREMENT))
+      }
+    },
+  },
+
+  mounted() {
+    this.checkIfNeedsToAddMoreItems()
   },
 
   watch: {
     filteredItems(newVal) {
       if (newVal.length < this.totalItemsToShow || !this.totalItemsToShow) {
         this.totalItemsToShow = newVal.length
+      } else {
+        this.checkIfNeedsToAddMoreItems()
       }
     },
   },
