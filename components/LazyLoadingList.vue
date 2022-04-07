@@ -1,5 +1,9 @@
 <template>
-  <div ref="lazy-loading-list" class="lazy-loading-list">
+  <div
+    ref="lazy-loading-list"
+    class="lazy-loading-list"
+    v-on:scroll="scrollHandler"
+  >
     <slot name="header"></slot>
 
     <div v-for="item in filteredItems" :key="keyGenerator(item)">
@@ -45,38 +49,20 @@ export default Vue.extend({
   },
 
   methods: {
-    resetScrollObserver() {
-      if (this.scrollObserver) {
-        this.scrollObserver.disconnect()
-      } else {
-        this.scrollObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach(({ isIntersecting }) => {
-              if (isIntersecting && this.items.length > this.totalItemsToShow) {
-                this.totalItemsToShow += InfiniteScrollIncrement
-              }
-            })
-          },
-          {
-            root: this.$refs['lazy-loading-list'] as Element,
-          }
-        )
-      }
+    scrollHandler(event: Event) {
+      const element = event.target as Element
 
-      if (this.$refs['scroll-helper']) {
-        this.scrollObserver.observe(this.$refs['scroll-helper'] as Element)
+      const reachedBottom =
+        element &&
+        element.scrollHeight - element.scrollTop === element.clientHeight
+
+      if (reachedBottom && this.items.length > this.totalItemsToShow) {
+        this.totalItemsToShow += InfiniteScrollIncrement
       }
     },
-  },
-
-  mounted() {
-    this.resetScrollObserver()
   },
 
   watch: {
-    items() {
-      this.resetScrollObserver()
-    },
     filteredItems(newVal) {
       if (newVal.length < this.totalItemsToShow || !this.totalItemsToShow) {
         this.totalItemsToShow = newVal.length
