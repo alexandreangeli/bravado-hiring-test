@@ -6,7 +6,7 @@
       <slot name="item" :item="item"></slot>
     </div>
 
-    <div ref="scroll-helper"></div>
+    <div ref="scroll-helper" class="lazy-loading-list__scroll-helper"></div>
   </div>
 </template>
 
@@ -72,5 +72,9 @@ export default Vue.extend({
   padding: 12px;
   display: flex;
   flex-direction: column;
+}
+.lazy-loading-list__scroll-helper {
+  min-height: 5px;
+  width: 100%;
 }
 </style>
