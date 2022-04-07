@@ -1,5 +1,7 @@
 # bravado-hiring-test
 
+Project running at https://bravado-hiring-test.netlify.app/
+
 ## Build Setup
 
 ```bash
