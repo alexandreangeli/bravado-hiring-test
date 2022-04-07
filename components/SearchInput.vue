@@ -26,7 +26,8 @@
       {{ placeholder }}
     </label>
     <input
-      v-model="value"
+      :value="value"
+      @input="(evt) => (value = evt.target.value)"
       class="search-input__input"
       id="search-input__input"
     />
