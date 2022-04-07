@@ -44,6 +44,7 @@ export default {
   build: {},
 
   googleFonts: {
+    display: 'swap',
     families: {
       Roboto: {
         wght: [100, 400, 500, 700],
