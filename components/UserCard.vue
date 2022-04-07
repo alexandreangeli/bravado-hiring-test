@@ -7,7 +7,7 @@
         :alt="`Picture of ${user.name}`"
         width="135px"
         height="135px"
-      >
+      />
     </div>
     <div class="user-card__right">
       <div class="user-card__info">
@@ -38,7 +38,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import IUser from '~/types/IUser'
-import QueryParams from '~/constants/QueryParams'
+import QUERY_PARAMS from '~/constants/QUERY_PARAMS'
 
 export default Vue.extend({
   name: 'UserCard',
@@ -60,7 +60,7 @@ export default Vue.extend({
 
   computed: {
     currentSearch(): string {
-      return this.$route.query[QueryParams.QS_SEARCH]?.toString().toUpperCase()
+      return this.$route.query[QUERY_PARAMS.QS_SEARCH]?.toString().toUpperCase()
     },
     highlightedName(): string {
       return this.getHightlightedText(this.user.name)

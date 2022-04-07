@@ -29,13 +29,13 @@
       v-model="value"
       class="search-input__input"
       id="search-input__input"
-    >
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import QueryParams from '~/constants/QueryParams.js'
+import QUERY_PARAMS from '~/constants/QUERY_PARAMS.js'
 import updateQueryParam from '~/functions/updateQueryParam'
 
 const SEARCH_DEBOUNCE_TIMER = 600
@@ -55,7 +55,7 @@ export default Vue.extend({
     searchDebouncer: null | NodeJS.Timeout
   } {
     return {
-      value: this.$route.query[QueryParams.QS_SEARCH]?.toString(),
+      value: this.$route.query[QUERY_PARAMS.QS_SEARCH]?.toString(),
       searchDebouncer: null,
     }
   },
@@ -67,7 +67,7 @@ export default Vue.extend({
       }
 
       this.searchDebouncer = setTimeout(() => {
-        updateQueryParam(this, newVal, QueryParams.QS_SEARCH)
+        updateQueryParam(this, newVal, QUERY_PARAMS.QS_SEARCH)
       }, SEARCH_DEBOUNCE_TIMER)
     },
   },

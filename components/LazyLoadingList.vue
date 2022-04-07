@@ -12,10 +12,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import QueryParams from '~/constants/QueryParams'
-import updateQueryParam from '~/functions/updateQueryParam'
-
-const LIST_SCROLL_INCREMENT = 5
+import InfiniteScrollIncrement from '~/constants/INFINITE_SCROLL_INCREMENT.js'
 
 export default Vue.extend({
   name: 'LazyLoadingList',
@@ -32,9 +29,7 @@ export default Vue.extend({
     scrollObserver: null | IntersectionObserver
   } {
     return {
-      totalItemsToShow:
-        parseInt(this.$route.query[QueryParams.QS_ITEMS_COUNT]?.toString()) ||
-        LIST_SCROLL_INCREMENT,
+      totalItemsToShow: InfiniteScrollIncrement,
       scrollObserver: null,
     }
   },
@@ -45,45 +40,27 @@ export default Vue.extend({
     },
   },
 
-  methods: {
-    resetScrollObserver() {
-      if (this.scrollObserver) {
-        this.scrollObserver.disconnect()
-      } else {
-        this.scrollObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach(({ isIntersecting }) => {
-              if (isIntersecting) {
-                this.totalItemsToShow += LIST_SCROLL_INCREMENT
-              }
-            })
-          },
-          {
-            root: this.$refs['lazy-loading-list'] as Element,
-          }
-        )
-      }
-
-      if (this.$refs['scroll-helper']) {
-        this.scrollObserver.observe(this.$refs['scroll-helper'] as Element)
-      }
-    },
-  },
-
   mounted() {
-    this.resetScrollObserver()
-  },
+    if (this.scrollObserver) {
+      this.scrollObserver.disconnect()
+    } else {
+      this.scrollObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(({ isIntersecting }) => {
+            if (isIntersecting) {
+              this.totalItemsToShow += InfiniteScrollIncrement
+            }
+          })
+        },
+        {
+          root: this.$refs['lazy-loading-list'] as Element,
+        }
+      )
+    }
 
-  watch: {
-    filteredItems(newVal) {
-      if (newVal.length < this.totalItemsToShow || !this.totalItemsToShow) {
-        this.totalItemsToShow = newVal.length
-        this.resetScrollObserver()
-      }
-    },
-    totalItemsToShow(newVal) {
-      updateQueryParam(this, newVal, QueryParams.QS_ITEMS_COUNT)
-    },
+    if (this.$refs['scroll-helper']) {
+      this.scrollObserver.observe(this.$refs['scroll-helper'] as Element)
+    }
   },
 })
 </script>

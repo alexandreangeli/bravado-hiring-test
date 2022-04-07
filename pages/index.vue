@@ -3,11 +3,11 @@
     <div class="page__inner">
       <lazy-loading-list :items="filteredBySearchUsers">
         <template v-slot:header>
-          <search-input placeholder="Search user" ></search-input>
+          <search-input placeholder="Search user"></search-input>
         </template>
-        
+
         <template v-slot:item="{ item }">
-          <user-card :user="item" ></user-card>
+          <user-card :user="item"></user-card>
         </template>
       </lazy-loading-list>
     </div>
@@ -18,7 +18,7 @@
 import Vue from 'vue'
 import SearchInput from '~/components/SearchInput.vue'
 import UserCard from '~/components/UserCard.vue'
-import QueryParams from '~/constants/QueryParams'
+import QUERY_PARAMS from '~/constants/QUERY_PARAMS'
 import usersJson from '~/static/users.json'
 import IUser from '~/types/IUser'
 
@@ -37,7 +37,7 @@ export default Vue.extend({
 
   computed: {
     currentSearch: function () {
-      return this.$route.query[QueryParams.QS_SEARCH]?.toString().toUpperCase()
+      return this.$route.query[QUERY_PARAMS.QS_SEARCH]?.toString().toUpperCase()
     },
     filteredBySearchUsers: function (): IUser[] {
       return this.currentSearch
